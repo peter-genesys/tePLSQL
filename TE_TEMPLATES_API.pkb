@@ -11,7 +11,9 @@ AS
                     COLUMNS
                         "NAME"        VARCHAR2( 500 ) PATH '/template/NAME'
                       , "TEMPLATE"    CLOB            PATH '/template/TEMPLATE'
-                      , "DESCRIPTION" varchar2( 500 ) PATH '/template/DESCRIPTION'
+                      , "DESCRIPTION" varchar2( 2000 ) PATH '/template/DESCRIPTION'
+                      , "README"      CLOB            PATH '/template/README'
+                      , "INCLUDES"    varchar2( 2000 ) PATH '/template/INCLUDES'
                       , CREATED_BY    VARCHAR2( 500 ) PATH '/template/CREATED_BY'
                       , CREATED_DATE  DATE            PATH '/template/CREATED_DATE'
                       , MODIFIED_BY   VARCHAR2( 500 ) PATH '/template/MODIFIED_BY'
@@ -40,6 +42,8 @@ AS
             "NAME"
           , template
           , description
+          , readme
+          , includes
           , created_by
           , created_date
           , modified_by
@@ -48,6 +52,8 @@ AS
             l_buffer( i )."NAME"
           , l_buffer( i ).template
           , l_buffer( i ).description
+          , l_buffer( i ).readme
+          , l_buffer( i ).includes
           , l_buffer( i ).created_by
           , l_buffer( i ).created_date
           , l_buffer( i ).modified_by
@@ -88,6 +94,8 @@ AS
           SELECT l_buffer( i )."NAME" "NAME"
                , l_buffer( i ).template template
                , l_buffer( i ).description description
+               , l_buffer( i ).readme readme
+               , l_buffer( i ).includes includes
                , l_buffer( i ).created_by created_by
                , l_buffer( i ).created_date created_date
                , l_buffer( i ).modified_by modified_by
@@ -97,6 +105,8 @@ AS
         ON ( old."NAME" = new."NAME" )
         WHEN MATCHED THEN UPDATE SET old.template      = new.template
                                    , old.description   = new.description
+                                   , old.readme        = new.readme
+                                   , old.includes      = new.includes
                                    , old.created_by    = new.created_by
                                    , old.modified_by   = new.modified_by
                                    , old.modified_date = new.modified_date
@@ -105,6 +115,8 @@ AS
                                           name
                                         , template
                                         , description
+                                        , readme
+                                        , includes
                                         , created_by
                                         , created_date
                                         , modified_by
@@ -113,6 +125,8 @@ AS
                                           new.name
                                         , new.template
                                         , new.description
+                                        , new.readme
+                                        , new.includes
                                         , new.created_by
                                         , new.created_date
                                         , new.modified_by
@@ -181,6 +195,8 @@ AS
                           , XMLFOREST( t."NAME"
                                     , t."TEMPLATE"
                                     , t.description
+                                    , t.readme
+                                    , t.includes
                                     , t.created_by
                                     , t.created_date
                                     , t.modified_by

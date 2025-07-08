@@ -1,8 +1,12 @@
+DROP TABLE TE_TEMPLATES;
+
 CREATE TABLE TE_TEMPLATES
 (
   NAME           VARCHAR2(300 BYTE),  
   TEMPLATE       CLOB,
-  DESCRIPTION    VARCHAR2(300 BYTE),               
+  DESCRIPTION    VARCHAR2(2000),
+  README         CLOB,               
+  INCLUDES       VARCHAR2(2000), 
   CREATED_BY     VARCHAR2(100 BYTE)             DEFAULT user                  NOT NULL,
   CREATED_DATE   DATE                           DEFAULT SYSDATE               NOT NULL,
   MODIFIED_BY    VARCHAR2(100 BYTE)             DEFAULT user                  NOT NULL,
