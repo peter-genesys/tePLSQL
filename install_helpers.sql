@@ -1,0 +1,1 @@
+execute te_default_helper_templates.install_templates;
