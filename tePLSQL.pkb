@@ -1143,6 +1143,7 @@ AS
    BEGIN
       --Clear buffer
       g_buffer    := NULL;
+      g_buffer2 := new t_indentable_clob();  -- Clear indentable buffer
 
       --Set engine properties
       reset_system_defaults;

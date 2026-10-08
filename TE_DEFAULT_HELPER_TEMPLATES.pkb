@@ -1,3 +1,4 @@
+set define off;
 create or replace
 package body te_default_helper_templates
 as
@@ -831,3 +832,4 @@ $end
     
 end te_default_helper_templates;
 /
+set define on;
